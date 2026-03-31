@@ -9,15 +9,15 @@ Skills are tool-agnostic and work with **Claude Code**, **Codex**, and **OpenCod
 
 ## Skills Matrix
 
-| Skill | Go | Python | Terraform |
-|-------|----|--------|-----------|
-| **policy** | Standards layer for Go design, boundaries, errors, context, concurrency, config, observability, security, and review priorities | Standards layer for Python design, boundaries, exceptions, typing, dependency injection, concurrency, config, observability, security, and review priorities | n/a |
-| **workflow** | Execution layer for Go work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | Execution layer for Python work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | n/a |
-| **dev** | Thin implementation mode layered on top of Go policy and workflow | Thin implementation mode layered on top of Python policy and workflow | Write, modify, and review HCL with IaC best practices |
-| **audit** | Phased 5-stage deep-dive audit with evidence, chunking, and phase gates | Phased 5-stage deep-dive audit adapted for Python codebases and tooling | Phased 5-stage infrastructure audit: resources, state, security, compliance |
-| **docs** | Documentation mode for godoc, README, ADR, API, runbook, changelog, and onboarding work | Generate docstrings (PEP 257), Sphinx/mkdocs, ADRs, runbooks, changelogs | Generate module READMEs, terraform-docs, ADRs, runbooks |
-| **test** | Test mode for strategy, unit/integration/e2e coverage, fuzzing, benchmarks, and regression work | Design test strategies, write tests (pytest, hypothesis, parametrize, fixtures) | Design test strategies (terraform test, Terratest, OPA/Rego, checkov) |
-| **migrate** | Migration mode for Go versions, dependency swaps, framework changes, architecture shifts, and rollback planning | Plan version upgrades, framework migrations (Flask/Django/FastAPI), packaging modernization | Plan version upgrades, state migrations, module refactoring, backend changes |
+| Skill | Go | Python | Terraform | Helm | Kubernetes | Operator |
+|-------|----|--------|-----------|------|------------|----------|
+| **policy** | Standards layer for Go design, boundaries, errors, context, concurrency, config, observability, security, and review priorities | Standards layer for Python design, boundaries, exceptions, typing, dependency injection, concurrency, config, observability, security, and review priorities | n/a | n/a | n/a | n/a |
+| **workflow** | Execution layer for Go work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | Execution layer for Python work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | n/a | n/a | n/a | n/a |
+| **dev** | Thin implementation mode layered on top of Go policy and workflow | Thin implementation mode layered on top of Python policy and workflow | Write, modify, and review HCL with IaC best practices | Write, modify, and review Helm charts and release packaging | Write, modify, and review Kubernetes manifests and workload configuration | Build controllers, APIs, reconcilers, webhooks, and operator wiring with kubebuilder/controller-runtime |
+| **audit** | Phased 5-stage deep-dive audit with evidence, chunking, and phase gates | Phased 5-stage deep-dive audit adapted for Python codebases and tooling | Phased 5-stage infrastructure audit: resources, state, security, compliance | Phased chart audit: values surface, templates, release safety, upgrade risk | Phased cluster-manifest audit: resources, boundaries, security, operability | Phased operator audit: APIs, reconciliation, status, safety, and lifecycle |
+| **docs** | Documentation mode for godoc, README, ADR, API, runbook, changelog, and onboarding work | Generate docstrings (PEP 257), Sphinx/mkdocs, ADRs, runbooks, changelogs | Generate module READMEs, terraform-docs, ADRs, runbooks | Generate chart READMEs, values references, upgrade notes, runbooks | Generate workload docs, manifests guides, runbooks, platform ADRs | Generate CRD, controller, operational, and upgrade documentation |
+| **test** | Test mode for strategy, unit/integration/e2e coverage, fuzzing, benchmarks, and regression work | Design test strategies, write tests (pytest, hypothesis, parametrize, fixtures) | Design test strategies (terraform test, Terratest, OPA/Rego, checkov) | Design chart test strategies (helm lint, template assertions, chart-testing) | Design manifest validation and conformance checks (kustomize, kubectl, policy) | Design envtest, reconciler, finalizer, status, and webhook test coverage |
+| **migrate** | Migration mode for Go versions, dependency swaps, framework changes, architecture shifts, and rollback planning | Plan version upgrades, framework migrations (Flask/Django/FastAPI), packaging modernization | Plan version upgrades, state migrations, module refactoring, backend changes | Plan chart API, values, dependency, and release workflow migrations | Plan API version, controller, workload, and platform migrations | Plan CRD versioning, controller refactors, dependency upgrades, and conversion work |
 
 ## Quick Start
 
@@ -45,6 +45,12 @@ Install for specific tools or languages:
 
 # Combine filters
 ./install.sh --tool=claude --lang=terraform
+
+# Only Helm and Kubernetes skills
+./install.sh --tool=codex --lang=helm,kubernetes
+
+# Only operator skills
+./install.sh --tool=codex --lang=operator
 
 # Preview without installing
 ./install.sh --dry-run
@@ -147,6 +153,27 @@ Each phase has strict gate rules — no recommendations before findings, no grad
 
 Covers all documentation types: inline docs (godoc/docstrings/variable descriptions), project docs (READMEs, ADRs, runbooks, changelogs), and API docs (OpenAPI, Sphinx, mkdocs, terraform-docs). Enforces language-specific conventions (godoc format, PEP 257, terraform-docs markers) and requires all documentation to be grounded in actual code.
 
+### Helm + Kubernetes
+
+The Helm and Kubernetes stacks follow the same task-mode pattern as Terraform:
+
+- **dev** covers chart, manifest, and packaging implementation work.
+- **audit** covers phased, evidence-based review of chart structure, workload boundaries, security, and operability.
+- **docs** covers chart READMEs, values references, deployment guides, and runbooks.
+- **test** covers linting, rendering, schema validation, policy checks, and deployment safety verification.
+- **migrate** covers API version changes, chart breaking changes, controller upgrades, and rollback planning.
+
+### Operator Skills And Their Relationship To Go
+
+The operator stack is a specialization of Go development rather than a replacement for it:
+
+- **go-policy** remains the source of truth for general Go engineering quality.
+- **go-workflow** remains the source of truth for execution discipline and verification flow.
+- **operator-dev**, **operator-test**, **operator-docs**, **operator-audit**, and **operator-migrate** add controller-specific rules for CRDs, reconciliation, status, finalizers, watches, webhooks, and lifecycle safety.
+- When operator-specific guidance conflicts with generic Go guidance, follow the operator skill for controller concerns and the Go skills for general engineering concerns.
+
+The operator skills are intentionally centered on **kubebuilder**, **controller-runtime**, and **achilles-sdk** patterns. `operator-sdk` is not treated as the primary workflow; if a repository already uses it, preserve existing conventions rather than forcing a migration.
+
 ### test (Test Strategy and Generation)
 
 Covers the full testing spectrum for each language:
@@ -204,6 +231,24 @@ skills/
 │   ├── test.skill.md
 │   └── workflow.skill.md
 ├── terraform/
+│   ├── audit.skill.md
+│   ├── dev.skill.md
+│   ├── docs.skill.md
+│   ├── migrate.skill.md
+│   └── test.skill.md
+├── helm/
+│   ├── audit.skill.md
+│   ├── dev.skill.md
+│   ├── docs.skill.md
+│   ├── migrate.skill.md
+│   └── test.skill.md
+├── kubernetes/
+│   ├── audit.skill.md
+│   ├── dev.skill.md
+│   ├── docs.skill.md
+│   ├── migrate.skill.md
+│   └── test.skill.md
+├── operator/
 │   ├── audit.skill.md
 │   ├── dev.skill.md
 │   ├── docs.skill.md

@@ -56,7 +56,7 @@ CODEX_SKILLS_DIR="${HOME}/.agents/skills"
 OPENCODE_AGENTS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/opencode/agents"
 
 VALID_TOOLS="claude codex opencode"
-LANGUAGES=(go python terraform)
+LANGUAGES=(go python terraform helm kubernetes operator)
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Version helpers
@@ -555,7 +555,7 @@ Options:
   --uninstall             Remove installed skills
   --dry-run               Show what would happen without making changes
   --tool=<t1[,t2,...]>    Install for specific tool(s): claude, codex, opencode
-  --lang=<l1[,l2,...]>    Install specific language(s): go, python, terraform
+  --lang=<l1[,l2,...]>    Install specific language(s): go, python, terraform, helm, kubernetes, operator
   -h, --help              Show this help
 
 Examples:
@@ -564,6 +564,8 @@ Examples:
   ./install.sh --tool=claude,opencode       Claude Code + OpenCode
   ./install.sh --lang=go,python             Go and Python skills only
   ./install.sh --tool=codex --lang=terraform Codex + Terraform only
+  ./install.sh --tool=claude --lang=helm,kubernetes Kubernetes packaging skills only
+  ./install.sh --tool=codex --lang=operator  Kubernetes operator skills only
   ./install.sh --dry-run                    Preview without installing
   ./install.sh --uninstall --tool=codex     Remove skills from Codex only
 HELPEOF

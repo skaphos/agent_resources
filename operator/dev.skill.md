@@ -1,0 +1,43 @@
+<!-- SPDX-FileCopyrightText: 2026 Skaphos -->
+<!-- SPDX-License-Identifier: MIT -->
+
+<!-- version: 0.1.0 -->
+# Kubernetes Operator Development Guidance
+
+## Purpose
+Use this skill when building or modifying Kubernetes operators in Go. This skill is a controller-specific overlay and should be used together with `go/policy.skill.md` and `go/workflow.skill.md`.
+
+This guidance is centered on `kubebuilder`, `controller-runtime`, and `achilles-sdk`. `operator-sdk` is not the primary workflow; if a repository already uses it, preserve local conventions rather than forcing a migration.
+
+## Scope
+- CRD and API type design
+- reconcilers and watch wiring
+- status and condition management
+- finalizers and deletion flow
+- webhooks and validation/defaulting
+- controller-runtime manager setup
+- achilles-sdk integration where present
+
+## Core Principles
+- Treat reconciliation as a level-triggered convergence loop, not an imperative script.
+- Make status truthful, minimal, and useful to operators.
+- Keep spec, status, metadata, and external side effects clearly separated.
+- Prefer idempotent writes and explicit ownership of created resources.
+- Avoid hidden controller behavior in helper layers that obscure requeue, error, or condition semantics.
+
+## Default Workflow
+1. Inspect API types, CRD markers, reconciler flow, watches, predicates, and owned resources before editing.
+2. Identify the contract change: API shape, reconciliation behavior, status semantics, or lifecycle behavior.
+3. Make the smallest safe change to types, reconciliation logic, or generated artifacts.
+4. Re-check generation, tests, and upgrade implications before considering the task done.
+
+## Default Verification
+- Run repository-standard generators for deep-copy, CRD, or manifests when needed.
+- Prefer focused Go tests plus `envtest` for reconciliation behavior.
+- Re-check finalizers, conditions, observed generation, and owner references for lifecycle correctness.
+- Verify that controller behavior is safe across retries, duplicate events, and partial failure.
+
+## Completion Criteria
+- Reconciliation remains idempotent.
+- Status and conditions reflect reality.
+- API and CRD changes are intentional and migration-aware.

@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This repository is a skills bundle plus one installer script. Language-specific skills live in `go/`, `python/`, and `terraform/`, with one `*.skill.md` file per mode such as `dev`, `audit`, `docs`, `test`, and `migrate`. Go and Python also include `policy` and `workflow` layers. The installer is `install.sh`, the main user documentation is `README.md`, and licensing metadata is in `LICENSE`.
+This repository is a skills bundle plus one installer script. Language-specific skills live in `go/`, `python/`, `terraform/`, `helm/`, `kubernetes/`, and `operator/`, with one `*.skill.md` file per mode such as `dev`, `audit`, `docs`, `test`, and `migrate`. Go and Python also include `policy` and `workflow` layers. The installer is `install.sh`, the main user documentation is `README.md`, and licensing metadata is in `LICENSE`.
 
 ## Build, Test, and Development Commands
 
