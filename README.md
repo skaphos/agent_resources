@@ -73,20 +73,32 @@ Install for specific tools or languages:
 
 Once installed, skills are invoked differently depending on your tool:
 
+### Layered stacks vs. single-mode stacks
+
+The Go and Python stacks are layered:
+
+- Start with `workflow` as the default entrypoint for most work.
+- Add `policy` when you want the standards layer made explicit.
+- Add a task mode such as `dev`, `audit`, `docs`, `test`, or `migrate` when the task benefits from a more specialized overlay.
+
+Terraform, Helm, Kubernetes, and Operator skills do not currently use a separate `workflow` skill, so their task-mode skills remain the normal entrypoints.
+
 ### Claude Code
 
 Skills are installed as custom slash commands in `~/.claude/commands/`:
 
 ```
-> /go-dev
-> /python-audit
+> /go-workflow
+> /python-workflow
 > /terraform-test
 ```
 
-Pair a skill with your task in the same prompt:
+For layered stacks, start with workflow and add a task mode only when needed:
 
 ```
-> /go-dev Implement the new queue consumer in this repo. Follow TDD.
+> /go-workflow Implement the new queue consumer in this repo. Follow TDD.
+> /go-workflow /go-test Add regression coverage for retry exhaustion.
+> /python-workflow Refactor the API client and verify the existing pytest flow.
 ```
 
 ### Codex
@@ -94,20 +106,28 @@ Pair a skill with your task in the same prompt:
 Skills are installed in `~/.agents/skills/` and invoked with the `$` prefix:
 
 ```
-$go-dev
-$python-audit
+$go-workflow
+$python-workflow
 $terraform-test
 ```
 
-Codex will also auto-select skills based on task descriptions when the skill's trigger conditions match.
+Typical usage:
+
+```
+$go-workflow
+$go-test
+$operator-dev
+```
+
+Codex can also auto-select skills based on task descriptions when the skill's trigger conditions match.
 
 ### OpenCode
 
 Skills are installed as agents in `~/.config/opencode/agents/` and invoked with the `@` prefix:
 
 ```
-@go-dev
-@python-audit
+@go-workflow
+@python-workflow
 @terraform-test
 ```
 
@@ -120,6 +140,7 @@ The Go stack now uses a layered model:
 - **policy** defines what good Go engineering looks like: package boundaries, interfaces, errors, context, concurrency, config, logging, security, shutdown, and review priorities.
 - **workflow** defines how Go work should be executed: repository discovery, tool precedence, truth hierarchy, verification depth, task classification, and uncertainty reporting.
 - **dev**, **audit**, **docs**, **test**, and **migrate** are task modes layered on top of policy and workflow.
+- In normal use, start with **workflow** and add a task mode only when the work is clearly specialized.
 
 This gives the Go stack a clearer precedence model and reduces duplication between skills.
 
@@ -130,6 +151,7 @@ The Python stack now uses the same layered model:
 - **policy** defines what good Python engineering looks like: module boundaries, protocols and ABCs, exceptions, typing, dependency injection, concurrency, config, logging, security, shutdown, and review priorities.
 - **workflow** defines how Python work should be executed: repository discovery, tool precedence, truth hierarchy, verification depth, task classification, and uncertainty reporting.
 - **dev**, **audit**, **docs**, **test**, and **migrate** are task modes layered on top of policy and workflow.
+- In normal use, start with **workflow** and add a task mode only when the work is clearly specialized.
 
 This gives the Python stack the same explicit precedence model and reduces duplicated boilerplate across skills.
 
