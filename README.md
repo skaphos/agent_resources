@@ -14,7 +14,7 @@ Skills are tool-agnostic and work with **Claude Code**, **Codex**, and **OpenCod
 | **policy** | Standards layer for Go design, boundaries, errors, context, concurrency, config, observability, security, and review priorities | Standards layer for Python design, boundaries, exceptions, typing, dependency injection, concurrency, config, observability, security, and review priorities | n/a | n/a | n/a | n/a |
 | **workflow** | Execution layer for Go work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | Execution layer for Python work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | n/a | n/a | n/a | n/a |
 | **dev** | Thin implementation mode layered on top of Go policy and workflow | Thin implementation mode layered on top of Python policy and workflow | Write, modify, and review HCL with IaC best practices | Write, modify, and review Helm charts and release packaging | Write, modify, and review Kubernetes manifests and workload configuration | Build controllers, APIs, reconcilers, webhooks, and operator wiring with kubebuilder/controller-runtime |
-| **audit** | Phased 5-stage deep-dive audit with evidence, chunking, and phase gates | Phased 5-stage deep-dive audit adapted for Python codebases and tooling | Phased 5-stage infrastructure audit: resources, state, security, compliance | Phased chart audit: values surface, templates, release safety, upgrade risk | Phased cluster-manifest audit: resources, boundaries, security, operability | Phased operator audit: APIs, reconciliation, status, safety, and lifecycle |
+| **audit** | Resumable 5-stage deep-dive audit with evidence, chunking, and phase gates | Resumable 5-stage deep-dive audit adapted for Python codebases and tooling | Resumable 5-stage infrastructure audit: resources, state, security, compliance | Resumable 5-stage chart audit: values surface, templates, release safety, upgrade risk | Resumable 5-stage cluster-manifest audit: resources, boundaries, security, operability | Resumable 5-stage operator audit: APIs, reconciliation, status, safety, and lifecycle |
 | **docs** | Documentation mode for godoc, README, ADR, API, runbook, changelog, and onboarding work | Generate docstrings (PEP 257), Sphinx/mkdocs, ADRs, runbooks, changelogs | Generate module READMEs, terraform-docs, ADRs, runbooks | Generate chart READMEs, values references, upgrade notes, runbooks | Generate workload docs, manifests guides, runbooks, platform ADRs | Generate CRD, controller, operational, and upgrade documentation |
 | **test** | Test mode for strategy, unit/integration/e2e coverage, fuzzing, benchmarks, and regression work | Design test strategies, write tests (pytest, hypothesis, parametrize, fixtures) | Design test strategies (terraform test, Terratest, OPA/Rego, checkov) | Design chart test strategies (helm lint, template assertions, chart-testing) | Design manifest validation and conformance checks (kustomize, kubectl, policy) | Design envtest, reconciler, finalizer, status, and webhook test coverage |
 | **migrate** | Migration mode for Go versions, dependency swaps, framework changes, architecture shifts, and rollback planning | Plan version upgrades, framework migrations (Flask/Django/FastAPI), packaging modernization | Plan version upgrades, state migrations, module refactoring, backend changes | Plan chart API, values, dependency, and release workflow migrations | Plan API version, controller, workload, and platform migrations | Plan CRD versioning, controller refactors, dependency upgrades, and conversion work |
@@ -161,7 +161,7 @@ For Go and Python, `dev` is now a thin implementation mode layered on top of lan
 
 ### audit (Audit Deep Dive)
 
-A structured 5-phase audit protocol for enterprise-grade codebase review:
+A structured, resumable 5-phase audit protocol for enterprise-grade codebase review:
 
 1. **Phase 1 — Inventory + Entrypoints**: Catalog files, packages, entry points, startup/shutdown behavior, configuration sources
 2. **Phase 2 — Accounting**: Index every function/class/resource with CSV artifacts
@@ -169,7 +169,7 @@ A structured 5-phase audit protocol for enterprise-grade codebase review:
 4. **Phase 4 — Security + Observability**: Prioritized findings (P0/P1/P2) with evidence and concrete fixes
 5. **Phase 5 — Synthesis**: Letter grades, prioritized refactor plan, 90-day roadmap
 
-Each phase has strict gate rules — no recommendations before findings, no grades before synthesis.
+Each audit skill now uses explicit continuation rules: execute one phase at a time, stop at the phase boundary, preserve chunked artifacts when needed, and end with a `STATE_SNAPSHOT` plus exact `NEXT` phase or follow-up step. Each phase has strict gate rules — no recommendations before findings, no grades before synthesis.
 
 ### docs (Documentation Guidance)
 
@@ -180,7 +180,7 @@ Covers all documentation types: inline docs (godoc/docstrings/variable descripti
 The Helm and Kubernetes stacks follow the same task-mode pattern as Terraform:
 
 - **dev** covers chart, manifest, and packaging implementation work.
-- **audit** covers phased, evidence-based review of chart structure, workload boundaries, security, and operability.
+- **audit** covers resumable, phase-by-phase review of chart structure, workload boundaries, security, and operability.
 - **docs** covers chart READMEs, values references, deployment guides, and runbooks.
 - **test** covers linting, rendering, schema validation, policy checks, and deployment safety verification.
 - **migrate** covers API version changes, chart breaking changes, controller upgrades, and rollback planning.

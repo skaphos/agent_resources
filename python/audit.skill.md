@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.0.0 -->
+<!-- version: 2.1.0 -->
 # Python Audit Mode
 
 ## Purpose
@@ -12,6 +12,12 @@ Apply this skill with:
 - `workflow.skill.md` for tool-first execution discipline
 
 This mode exists because audit work has materially different output constraints, evidence rules, and sequencing from normal implementation work.
+
+## Skill Use
+- Load this skill only when the user explicitly wants a deep Python repository audit or a clearly similar phased review.
+- Treat this skill as the governing audit contract for the turn or session.
+- Keep repository-specific instructions in the invoking prompt.
+- Use this skill phase by phase. Do not treat it as permission to compress the whole audit into one response.
 
 ## When To Use
 Use this skill when the user asks for:
@@ -37,6 +43,7 @@ Recommended inputs:
 - depth constraints
 - how to treat generated or vendored code
 - Python version or framework if known
+- previous phase artifacts or `STATE_SNAPSHOT` when continuing
 
 If scope or phase is missing, stop and ask.
 
@@ -46,6 +53,8 @@ If scope or phase is missing, stop and ask.
 - Stay phase-disciplined.
 - Treat tests, scripts, CI, infra, dependency files, and docs as first-class evidence.
 - Account for dynamic Python behavior without overstating certainty.
+- Read enough surrounding module and framework context to avoid symbol-level misinterpretation.
+- If continuation context is provided, use it to resume the requested phase or exact next step, not to skip evidence gathering.
 - Do not collapse multiple phases into one response.
 
 ## Evidence Rules
@@ -64,10 +73,12 @@ ERROR: <short reason>
 BLOCKED_BY: <what is missing>
 ```
 
-## Chunking Rules
+## Chunking And Continuation Rules
 - Work only on the requested phase.
 - Stop at the end of the phase boundary.
 - Chunk large artifacts rather than compressing them inaccurately.
+- When a phase is too large for one response, emit the current chunk, preserve artifact part names, and set `NEXT` to the exact remaining step or artifact part.
+- If required information is missing, stop and identify exactly what is missing instead of guessing.
 - End every response with:
 
 ```text
@@ -76,6 +87,13 @@ STATE_SNAPSHOT: (max 8 bullets)
 
 NEXT: <exact next phase name>
 ```
+
+## General Audit Method
+1. Establish accessible scope and obvious exclusions.
+2. Read the files relevant to the requested phase before making conclusions.
+3. Build inventories or evidence tables before evaluative claims.
+4. Reuse prior phase artifacts when supplied, but verify any new claims against repository evidence.
+5. Preserve phase boundaries strictly.
 
 ## Phase Gate Rules
 - Phase 1 may inventory and describe, but must not recommend.
@@ -142,6 +160,7 @@ An audit response is incomplete if it:
 - omits required artifacts
 - grades before synthesis
 - recommends fixes before the proper phase
+- omits the continuation footer
 
 ## Invocation Template
 Use this skill with a prompt that supplies repository-specific context. Example:
