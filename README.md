@@ -1,3 +1,6 @@
+<!-- SPDX-FileCopyrightText: 2026 Skaphos -->
+<!-- SPDX-License-Identifier: MIT -->
+
 # LLM Coding Skills
 
 A curated set of skills for LLM-powered coding assistants. Each skill is a structured prompt that gives your AI assistant deep, opinionated guidance for a specific task type — turning a general-purpose LLM into a focused specialist.
@@ -173,6 +176,12 @@ All skills are versioned using a `<!-- version: X.Y.Z -->` comment at the top of
 - **No change**: when versions match (still overwrites to pick up non-version changes)
 
 Check installed versions with `./install.sh --list`.
+
+## License
+
+This repository is licensed under the SPDX license expression `MIT`.
+
+Copyright attribution for the repository and included skills is `Skaphos`.
 
 ## Directory Structure
 

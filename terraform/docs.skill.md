@@ -1,3 +1,6 @@
+<!-- SPDX-FileCopyrightText: 2026 Skaphos -->
+<!-- SPDX-License-Identifier: MIT -->
+
 <!-- version: 1.1.0 -->
 # Terraform Documentation Guidance
 

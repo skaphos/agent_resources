@@ -1,3 +1,6 @@
+<!-- SPDX-FileCopyrightText: 2026 Skaphos -->
+<!-- SPDX-License-Identifier: MIT -->
+
 <!-- version: 2.0.0 -->
 # Python Migration Mode
 
