@@ -8,3 +8,15 @@ labels:
     role: llm-skills
 entrypoints:
     readme: README.md
+paths:
+    authoritative:
+        - go/
+        - python/
+        - terraform/
+        - helm/
+        - kubernetes/
+        - operator/
+        - install.sh
+related_repos:
+    - repo_id: github.com/skaphos/skaphos-resources
+      relationship: references
