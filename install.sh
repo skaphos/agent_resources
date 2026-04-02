@@ -133,7 +133,19 @@ skill_name()     { echo "${1}-$(skill_basename "$2")"; }
 
 list_skill_files() {
     local lang="$1"
-    find "${SCRIPT_DIR}/${lang}" -maxdepth 1 -type f -name '*.skill.md' -printf '%f\n' | sort
+    local dir path files=()
+    dir="${SCRIPT_DIR}/${lang}"
+
+    for path in "${dir}"/*.skill.md; do
+        [ -e "$path" ] || continue
+        files+=("${path##*/}")
+    done
+
+    if [ "${#files[@]}" -eq 0 ]; then
+        return 0
+    fi
+
+    printf '%s\n' "${files[@]}" | sort
 }
 
 # Get the title from a skill file (first heading, skipping version comment)
