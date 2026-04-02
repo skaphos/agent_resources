@@ -1,0 +1,10 @@
+apiVersion: repokeeper/v1
+kind: RepoMetadata
+repo_id: github.com/skaphos/agent_resources
+name: Agent Resources
+labels:
+    kind: skills
+    org: skaphos
+    role: llm-skills
+entrypoints:
+    readme: README.md
