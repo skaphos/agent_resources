@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.0.0 -->
+<!-- version: 2.1.0 -->
 # Go Migration Mode
 
 ## Purpose
@@ -12,6 +12,14 @@ Apply this skill with:
 - `workflow.skill.md` for tool-first discovery and verification
 
 This mode exists for migrations that materially change tooling, dependencies, architecture, schema, or API shape and therefore require explicit impact analysis, sequencing, and rollback planning.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Use tools to inventory call sites, imports, and schema references before proposing a migration plan — do not estimate blast radius from memory.
+- Issue independent tool calls (listing affected files, reading config, checking CI) in parallel.
+- Run `go build`, `go test`, and static analysis after each migration step and report actual output, not expected output.
+- If the migration touches persistence, run schema or data verification against the target state rather than inferring correctness.
 
 ## When To Use
 Use this skill for:

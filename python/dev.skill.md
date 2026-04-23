@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.0.0 -->
+<!-- version: 2.1.0 -->
 # Python Development Mode
 
 ## Purpose
@@ -16,6 +16,13 @@ This skill is intentionally thin. It is the default implementation mode for Pyth
 - Use this skill together with Python policy and Python workflow when available.
 - Treat this skill as the implementation-mode overlay, not as the full Python contract by itself.
 - Follow repository-specific commands, framework conventions, test markers, and tooling requirements when they are explicit.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Invoke tools to read code, find references, and run tests; do not describe what you would do.
+- Issue independent tool calls in parallel rather than sequentially.
+- Run the relevant `pytest`, type-check, or lint commands yourself — do not claim a change is verified without tool output.
 
 ## Mode Focus
 - Deliver the requested behavior with the smallest viable change.

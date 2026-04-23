@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.1.0 -->
+<!-- version: 0.2.0 -->
 # Helm Development Guidance
 
 ## Purpose
@@ -11,6 +11,14 @@ Use this skill when writing, modifying, or reviewing Helm charts. It is the defa
 - Load this skill when the task is to change Helm chart code, chart packaging, or Helm-based deployment workflow.
 - Prefer stable chart interfaces over clever templates.
 - Match repository conventions for chart layout, release tooling, and values structure when they are explicit.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Invoke tools to read templates, values files, and `Chart.yaml`; do not describe what you would do.
+- Run `helm lint` and `helm template` with representative values files to verify rendered output — do not claim a change is safe without executing these.
+- Issue independent tool calls in parallel rather than sequentially.
+- Before changing helper templates or label selectors, inspect callers across the chart and any subcharts.
 
 ## Core Principles
 - Keep templates readable. Favor explicit manifests over dense helper indirection.

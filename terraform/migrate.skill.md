@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 1.1.0 -->
+<!-- version: 1.2.0 -->
 # Terraform Migration Planning
 
 ## Purpose
@@ -16,12 +16,13 @@ This skill defines the migration planning and execution contract for Terraform w
 - Match established project migration conventions when they are clear and defensible.
 - When this skill conflicts with casual convenience, follow this skill.
 
-### Tool Compatibility
-This skill is designed to work with any LLM-powered coding assistant that supports file reading, editing, and codebase search. The instructions are tool-agnostic — adapt tool invocations to whatever is available in your environment:
-- **Claude Code**: Use Read, Edit, Write, Grep, Glob, and Bash tools as appropriate.
-- **OpenCode**: Use available file reading, editing, and search capabilities. This skill can be loaded as an OpenCode agent via `.opencode/agents/terraform-migrate.md`.
-- **Codex**: Load this skill as a SKILL.md resource in your task prompt.
-- **Other tools**: Use equivalent file, edit, and search operations available in your environment.
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Use tools to inventory modules, provider pins, state backends, and workspace layout before proposing a migration plan — do not estimate blast radius from memory.
+- Issue independent tool calls (listing workspaces, reading lockfiles, checking CI) in parallel.
+- Run `terraform plan` after each migration step and report actual output, not expected output.
+- For state operations (`moved`, `import`, backend changes), inspect the plan and state listings rather than asserting correctness.
 
 ## When To Use
 Use this skill when the user asks for any of the following:

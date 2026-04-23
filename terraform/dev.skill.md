@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 1.1.0 -->
+<!-- version: 1.2.0 -->
 # Terraform Development Guidance
 
 ## Purpose
@@ -16,12 +16,13 @@ This skill defines the default implementation and review contract for Terraform 
 - Match established project conventions when they are clear and defensible.
 - When this skill conflicts with casual convenience, follow this skill.
 
-### Tool Compatibility
-This skill is designed to work with any LLM-powered coding assistant that supports file reading, editing, and codebase search. The instructions are tool-agnostic — adapt tool invocations to whatever is available in your environment:
-- **Claude Code**: Use Read, Edit, Write, Grep, Glob, and Bash tools as appropriate.
-- **OpenCode**: Use available file reading, editing, and search capabilities. This skill can be loaded as an OpenCode agent via `.opencode/agents/terraform-dev.md`.
-- **Codex**: Load this skill as a SKILL.md resource in your task prompt.
-- **Other tools**: Use equivalent file, edit, and search operations available in your environment.
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Invoke tools to read HCL, search for resources, and run `terraform` commands; do not describe what you would do.
+- Issue independent tool calls in parallel rather than sequentially.
+- Run `terraform fmt`, `terraform validate`, and `terraform plan` yourself — do not claim a change is verified without tool output.
+- Before proposing a change to a shared module, inspect its callers to scope the blast radius.
 
 ## Core Principles
 

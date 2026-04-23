@@ -1,11 +1,19 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.1.0 -->
+<!-- version: 0.2.0 -->
 # Helm Documentation Guidance
 
 ## Purpose
 Use this skill when writing or updating Helm chart documentation: chart READMEs, values references, upgrade notes, operator runbooks, and release guidance.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Read `Chart.yaml`, `values.yaml`, schemas, and templates before documenting behavior — do not write from memory.
+- Verify example commands by running `helm template` or `helm lint` where practical.
+- Issue independent tool calls (reading multiple values files, scanning subcharts) in parallel.
+- Cite the exact values key or template path when describing behavior.
 
 ## Scope
 - `README.md` for chart purpose, install flow, and examples

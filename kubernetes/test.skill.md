@@ -1,11 +1,19 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.1.0 -->
+<!-- version: 0.2.0 -->
 # Kubernetes Test Strategy And Generation
 
 ## Purpose
 Use this skill when designing validation and test strategy for Kubernetes manifests and platform repositories.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Run `kustomize build`, `kubeconform`, `kubectl apply --dry-run=server`, and policy tools (`conftest`, `kyverno test`, `gator`) directly. A new validation is not done until the commands have executed.
+- Issue independent tool calls (rendering multiple overlays, scanning for deprecated APIs, checking policy bundles) in parallel.
+- Report failures with the exact command and output that produced them.
+- When testing policy changes, render every affected overlay — do not assume a policy rule covers edge cases without verifying.
 
 ## Test Layers
 - Static schema validation with `kubectl`, `kubeconform`, or `kubeval`

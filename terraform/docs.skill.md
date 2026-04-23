@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 1.1.0 -->
+<!-- version: 1.2.0 -->
 # Terraform Documentation Guidance
 
 ## Purpose
@@ -16,12 +16,14 @@ This skill defines the documentation contract for Terraform work. It is intended
 - Match established project documentation conventions when they are clear and defensible.
 - When this skill conflicts with casual convenience, follow this skill.
 
-### Tool Compatibility
-This skill is designed to work with any LLM-powered coding assistant that supports file reading, editing, and codebase search. The instructions are tool-agnostic — adapt tool invocations to whatever is available in your environment:
-- **Claude Code**: Use Read, Edit, Write, Grep, Glob, and Bash tools as appropriate.
-- **OpenCode**: Use available file reading, editing, and search capabilities. This skill can be loaded as an OpenCode agent via `.opencode/agents/terraform-docs.md`.
-- **Codex**: Load this skill as a SKILL.md resource in your task prompt.
-- **Other tools**: Use equivalent file, edit, and search operations available in your environment.
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Read the HCL before documenting it; do not write documentation from memory or assumption.
+- Verify variable/output descriptions, defaults, and validation blocks against the actual `.tf` files.
+- Run `terraform-docs` (or equivalent) to confirm generated sections match the current module surface.
+- Issue independent tool calls (reading multiple modules, scanning for resources) in parallel.
+- Cite the file path when documenting behavior — do not paraphrase without grounding.
 
 ## When To Use
 Use this skill when the user asks for any of the following:

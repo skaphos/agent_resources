@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.0.0 -->
+<!-- version: 2.1.0 -->
 # Python Test Mode
 
 ## Purpose
@@ -12,6 +12,14 @@ Apply this skill with:
 - `workflow.skill.md` for tool-first execution and verification discipline
 
 This mode exists because test work has its own decision rules, fixtures, async patterns, mocking tradeoffs, and failure modes.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Run the tests you write. A new or updated test is not done until `pytest` (or the repo's runner) has executed it and the result is known.
+- Use structural tools to locate the code under test and its callers; do not guess at signatures or coverage.
+- Issue independent tool calls (test discovery, coverage reads, symbol lookups) in parallel.
+- Report flaky or async failures with the command and output that produced them, not paraphrased.
 
 ## When To Use
 Use this skill for:

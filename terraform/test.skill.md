@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 1.1.0 -->
+<!-- version: 1.2.0 -->
 # Terraform Test Strategy And Generation
 
 ## Purpose
@@ -16,12 +16,13 @@ This skill defines the test strategy and generation contract for Terraform work.
 - Match established project test conventions when they are clear and defensible.
 - When this skill conflicts with casual convenience, follow this skill.
 
-### Tool Compatibility
-This skill is designed to work with any LLM-powered coding assistant that supports file reading, editing, and codebase search. The instructions are tool-agnostic — adapt tool invocations to whatever is available in your environment:
-- **Claude Code**: Use Read, Edit, Write, Grep, Glob, and Bash tools as appropriate.
-- **OpenCode**: Use available file reading, editing, and search capabilities. This skill can be loaded as an OpenCode agent via `.opencode/agents/terraform-test.md`.
-- **Codex**: Load this skill as a SKILL.md resource in your task prompt.
-- **Other tools**: Use equivalent file, edit, and search operations available in your environment.
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Run the tests you write. A new `.tftest.hcl` file is not done until `terraform test` has executed it and the result is known.
+- Invoke `terraform fmt`, `terraform validate`, and `terraform plan` directly; do not describe what they would show.
+- Issue independent tool calls (reading multiple files, scanning modules, checking CI config) in parallel.
+- Report actual tool output for failures, not paraphrased summaries.
 
 ## When To Use
 Use this skill when the user asks for any of the following:

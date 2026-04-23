@@ -1,11 +1,19 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.1.0 -->
+<!-- version: 0.2.0 -->
 # Kubernetes Migration Planning
 
 ## Purpose
 Use this skill when planning Kubernetes manifest migrations: API version changes, controller swaps, workload identity changes, storage transitions, or platform policy adoption.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Inventory affected resources with `kubectl api-resources`, `kubectl explain`, and repo-wide searches before proposing a plan.
+- Diff rendered manifests between source and target with `kustomize build` or `kubectl diff`; inspect the output directly.
+- Issue independent tool calls (scanning overlays, checking CRDs, inspecting controller versions) in parallel.
+- For storage, selector, or immutable-field changes, verify the required cutover path by reading controller behavior rather than assuming.
 
 ## Migration Concerns
 - Deprecated API versions and removed fields

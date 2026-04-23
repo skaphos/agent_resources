@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.2.0 -->
+<!-- version: 0.3.0 -->
 # Kubernetes Operator Audit Deep Dive
 
 ## Purpose
@@ -18,6 +18,14 @@ This skill overlays Go audit discipline with controller-specific concerns around
 - Treat this skill as the governing operator-audit contract for the turn or session.
 - Keep repository-specific scope, focus areas, and exclusions in the invoking prompt.
 - Execute only the requested phase and stop at the phase boundary.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Every factual claim in an audit must come from a tool invocation, not inference. Read the reconciler, API type, watch, or generated artifact before writing the finding.
+- Prefer structural or type-aware tooling (LSP, `gopls`) for reconciler call graphs and owner-reference chains; fall back to text search only when it is not available.
+- Issue independent tool calls (API scans, controller inventories, CRD manifest reads, RBAC marker greps) in parallel.
+- If evidence cannot be gathered (generated code hidden, envtest unavailable), record it under `UNREVIEWED/INACCESSIBLE` rather than guessing.
 
 ## When To Use
 Use this skill for:

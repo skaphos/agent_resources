@@ -1,13 +1,21 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.1.0 -->
+<!-- version: 0.2.0 -->
 # Kubernetes Operator Test Strategy And Generation
 
 ## Purpose
 Use this skill when designing or writing tests for Kubernetes operators built in Go.
 
 Apply this skill with `go/policy.skill.md`, `go/workflow.skill.md`, and `go/test.skill.md` for base Go testing standards.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Run the tests you write. A new reconciler or envtest case is not done until `go test`, `envtest`, or the repo's runner has executed it and the result is known.
+- Regenerate CRDs and deep-copy code via `make generate`/`make manifests` after API changes; do not rely on stale generated files.
+- Issue independent tool calls (reading types, predicates, watch setup, existing tests) in parallel.
+- Report failing envtest runs with the exact command and output that produced them.
 
 ## Test Layers
 - pure Go unit tests for helpers, predicates, mapping functions, and condition logic

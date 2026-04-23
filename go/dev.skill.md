@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.0.0 -->
+<!-- version: 2.1.0 -->
 # Go Development Mode
 
 ## Purpose
@@ -16,6 +16,13 @@ This skill is intentionally thin. It is the default execution mode for writing G
 - Use this skill together with Go policy and Go workflow when available.
 - Treat this skill as the implementation-mode overlay, not as the full Go contract by itself.
 - Follow repository-specific commands, generators, build tags, and CI conventions when they are explicit.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Invoke tools to read code, find references, and run tests; do not describe what you would do.
+- Issue independent tool calls in parallel rather than sequentially.
+- Run the relevant `go test` or static-analysis commands yourself — do not claim a change is verified without tool output.
 
 ## Mode Focus
 - Deliver the requested behavior with the smallest viable change.

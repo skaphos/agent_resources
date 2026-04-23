@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.2.0 -->
+<!-- version: 0.3.0 -->
 # Kubernetes Audit Deep Dive
 
 ## Purpose
@@ -14,6 +14,14 @@ This skill is the audit contract for workload boundaries, security posture, oper
 - Treat this skill as the governing audit contract for the turn or session.
 - Keep repository-specific scope, focus areas, and exclusions in the invoking prompt.
 - Execute only the requested phase and stop at the phase boundary.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Every factual claim in an audit must come from a tool invocation, not inference. Read the manifest, overlay, or patch before writing the finding.
+- Render composed manifests with `kustomize build` (or `kubectl kustomize`) and validate with `kubeconform` or `kubectl apply --dry-run=server` before asserting behavior.
+- Issue independent tool calls (inventory scans, multi-file reads, overlay walks, policy checks) in parallel.
+- If evidence cannot be gathered (no cluster access, missing overlays, generated manifests), record it under `UNREVIEWED/INACCESSIBLE` rather than guessing.
 
 ## When To Use
 Use this skill for:
@@ -124,15 +132,31 @@ Using phase 1 and 2 evidence:
 
 ### PHASE 4 - Security + Operability Findings
 Review:
-- service accounts, RBAC scope, pod security context, container privileges, image sourcing, and network exposure
-- logs, metrics hooks, health endpoints, graceful shutdown, and failure isolation where evidenced
-- policy conformance and manifest-level guardrails where present
+- **ServiceAccounts**: use of `default`, auto-mount of tokens, shared SAs across workloads, cloud identity federation
+- **RBAC scope**: wildcard verbs/resources, unwarranted cluster-scoped bindings, aggregated ClusterRole drift, bindings to `cluster-admin`
+- **Pod Security**: Pod Security Admission labels per namespace (`enforce`/`audit`/`warn`), pods that violate the Restricted profile
+- **Pod securityContext**: `runAsNonRoot`, explicit `runAsUser`, `fsGroup`, `seccompProfile: RuntimeDefault`
+- **Container securityContext**: `allowPrivilegeEscalation: false`, `privileged: false`, `readOnlyRootFilesystem: true`, `capabilities.drop: ["ALL"]`, explicit adds
+- **Image sourcing**: digest pinning vs floating tags, registry whitelist, signature verification, image pull secrets hygiene
+- **Host access**: `hostNetwork`, `hostPID`, `hostIPC`, `hostPath`, host ports
+- **Secrets handling**: env-vs-file projection, external secret source, rotation story, stale Secrets
+- **Network exposure**: default-deny NetworkPolicy per app namespace, per-workload allow rules, `LoadBalancer`/`NodePort` surface, Ingress TLS
+- **Workload resilience**: `replicas`, PDBs, `topologySpreadConstraints` (hostname + zone), rollout strategy, probes including `startupProbe` where relevant
+- **Resource management**: `requests` set on every container, memory `limits`, HPA/VPA coexistence, QoS class realism
+- **StatefulSet identity**: `serviceName`, `volumeClaimTemplates`, `storageClassName` stability; `allowVolumeExpansion` on referenced StorageClasses
+- **Observability**: metrics endpoint isolation, ServiceMonitor coverage, structured logging, shutdown behavior
+- **Policy conformance**: Kyverno/OPA/Gatekeeper coverage, admission webhook posture, deprecated API usage
 
 Output findings grouped by `P0`, `P1`, and `P2`, each with:
 - file path
 - resource name or workload boundary
 - evidence
 - concrete fix
+
+Severity guidance:
+- **P0**: anything that breaks workload identity on apply (selector/serviceName/storageClassName change in place), missing NetworkPolicy coverage on namespaces with internet exposure, `privileged: true` without documented need, `cluster-admin` binding on an application ServiceAccount, unbounded RBAC wildcards, secrets in plaintext, no Pod Security Admission enforcement on application namespaces.
+- **P1**: auto-mounted SA tokens on workloads that don't need them, missing PDB on multi-replica workloads, missing topology spread, mutable image tags in production, `runAsUser: 0` or missing `runAsNonRoot`, writable root filesystem, capabilities not dropped, `default` ServiceAccount in use, missing `resources.requests`.
+- **P2**: missing `startupProbe` on slow-starting workloads, non-structured logs, `env`-projected secrets instead of file mounts, missing `ttlSecondsAfterFinished` on Jobs, unset `concurrencyPolicy` on CronJobs, missing recommended labels (`app.kubernetes.io/*`).
 
 ### PHASE 5 - Synthesis
 Produce:

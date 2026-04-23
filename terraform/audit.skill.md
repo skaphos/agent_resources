@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 1.1.0 -->
+<!-- version: 1.2.0 -->
 # Terraform Audit Deep Dive
 
 ## Purpose
@@ -15,12 +15,13 @@ This skill defines the stable audit contract. Per-run inputs such as the reposit
 - Keep repository-specific instructions in the task prompt, not in this file.
 - When this skill conflicts with generic review behavior, follow this skill.
 
-### Tool Compatibility
-This skill is designed to work with any LLM-powered coding assistant that supports file reading and codebase search. The instructions are tool-agnostic — adapt tool invocations to whatever is available in your environment:
-- **Claude Code**: Use Read, Grep, Glob, and Agent tools for discovery and analysis.
-- **OpenCode**: Use available file reading and search capabilities. This skill can be loaded as an OpenCode agent via `.opencode/agents/terraform-audit.md`.
-- **Codex**: Load this skill as a SKILL.md resource in your task prompt.
-- **Other tools**: Use equivalent file and search operations available in your environment.
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Every factual claim in an audit must come from a tool invocation, not inference. Read the file, search for the resource, or run the command before writing the finding.
+- Issue independent tool calls (directory listings, resource scans, provider pins, backend config reads) in parallel.
+- When plan or state evidence is needed, inspect `terraform plan` output or state directly rather than describing expected behavior.
+- If evidence cannot be gathered (no plan access, missing state visibility), record it under `UNREVIEWED/INACCESSIBLE` rather than guessing.
 
 ## When To Use
 Use this skill when the user asks for any of the following:

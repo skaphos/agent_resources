@@ -1,13 +1,21 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.1.0 -->
+<!-- version: 0.2.0 -->
 # Kubernetes Operator Development Guidance
 
 ## Purpose
 Use this skill when building or modifying Kubernetes operators in Go. This skill is a controller-specific overlay and should be used together with `go/policy.skill.md` and `go/workflow.skill.md`.
 
 This guidance is centered on `kubebuilder`, `controller-runtime`, and `achilles-sdk`. `operator-sdk` is not the primary workflow; if a repository already uses it, preserve local conventions rather than forcing a migration.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Invoke tools to read API types, reconcilers, watches, and generated CRDs before editing — do not describe behavior you have not traced.
+- Run `make generate`, `make manifests`, `go test ./...`, and `envtest` yourself; do not claim a controller change is verified without tool output.
+- Prefer structural tooling (LSP, `gopls`) for reference and implementation lookups across the reconciler, its owned resources, and tests.
+- Issue independent tool calls (reading types, watches, RBAC markers, CRD manifests) in parallel.
 
 ## Scope
 - CRD and API type design

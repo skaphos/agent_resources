@@ -1,11 +1,19 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 0.1.0 -->
+<!-- version: 0.2.0 -->
 # Helm Migration Planning
 
 ## Purpose
 Use this skill when planning Helm chart migrations: chart API changes, values contract changes, dependency upgrades, repository moves, or release-process changes.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Use tools to inventory charts, subcharts, values keys, and installed releases before proposing a plan — do not estimate blast radius from memory.
+- Diff rendered output between old and new values with `helm template` to confirm behavior changes; inspect the diff directly.
+- Issue independent tool calls (reading multiple environments, scanning overlays, checking dependencies) in parallel.
+- When renaming keys or resources, grep for every caller and overlay before declaring the mapping complete.
 
 ## Migration Concerns
 - Breaking value key renames and default changes

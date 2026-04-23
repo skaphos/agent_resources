@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.0.0 -->
+<!-- version: 2.1.0 -->
 # Go Engineering Policy
 
 ## Purpose
@@ -14,6 +14,13 @@ This skill is the standards layer for Go tasks. It defines coding rules, archite
 - Treat this skill as the default Go quality contract unless the repository has stricter local rules.
 - Repository-specific conventions may override this skill when they are explicit, coherent, and defensible.
 - When this skill conflicts with casual convenience, follow this skill.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Invoke tools to check standards against real code; do not apply rules from memory to code you have not read.
+- Issue independent tool calls in parallel rather than sequentially.
+- Verify claims about API shape, error handling, or boundaries against the current source before asserting them.
 
 ## Core Principles
 

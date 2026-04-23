@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.0.0 -->
+<!-- version: 2.1.0 -->
 # Python Engineering Workflow
 
 ## Purpose
@@ -14,6 +14,14 @@ This skill is the execution layer for Python work. It pairs with `policy.skill.m
 - Use this skill together with Python policy and any task-specific Python mode when available.
 - Treat this skill as the default execution contract unless the repository has stricter local workflow requirements.
 - Prefer repository-specific commands, framework conventions, and tooling when they are explicit.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Invoke tools to gather evidence; do not narrate or infer what a tool would show.
+- Prefer structural or type-aware tooling (LSP, `pyright`, `mypy --no-color`) when available; fall back to text search only when it is not.
+- Issue independent tool calls in parallel rather than sequentially.
+- If a claim can be verified by running a command, reading a file, or inspecting a symbol, verify it before asserting it.
 
 ## Operating Stance
 - Use tools before explanation when the tool can resolve the question.

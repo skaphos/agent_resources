@@ -9,15 +9,33 @@ Skills are tool-agnostic and work with **Claude Code**, **Codex**, and **OpenCod
 
 ## Skills Matrix
 
+### Language And Platform Skills
+
 | Skill | Go | Python | Terraform | Helm | Kubernetes | Operator |
 |-------|----|--------|-----------|------|------------|----------|
 | **policy** | Standards layer for Go design, boundaries, errors, context, concurrency, config, observability, security, and review priorities | Standards layer for Python design, boundaries, exceptions, typing, dependency injection, concurrency, config, observability, security, and review priorities | n/a | n/a | n/a | n/a |
 | **workflow** | Execution layer for Go work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | Execution layer for Python work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | n/a | n/a | n/a | n/a |
-| **dev** | Thin implementation mode layered on top of Go policy and workflow | Thin implementation mode layered on top of Python policy and workflow | Write, modify, and review HCL with IaC best practices | Write, modify, and review Helm charts and release packaging | Write, modify, and review Kubernetes manifests and workload configuration | Build controllers, APIs, reconcilers, webhooks, and operator wiring with kubebuilder/controller-runtime |
+| **dev** | Thin implementation mode layered on top of Go policy and workflow | Thin implementation mode layered on top of Python policy and workflow | Write, modify, and review HCL with IaC best practices | Write, modify, and review Helm charts and release packaging | Write, modify, and review Kubernetes manifests with PSS-Restricted baseline, topology spread, and Kustomize best practices | Build controllers, APIs, reconcilers, webhooks, and operator wiring with kubebuilder/controller-runtime |
 | **audit** | Resumable 5-stage deep-dive audit with evidence, chunking, and phase gates | Resumable 5-stage deep-dive audit adapted for Python codebases and tooling | Resumable 5-stage infrastructure audit: resources, state, security, compliance | Resumable 5-stage chart audit: values surface, templates, release safety, upgrade risk | Resumable 5-stage cluster-manifest audit: resources, boundaries, security, operability | Resumable 5-stage operator audit: APIs, reconciliation, status, safety, and lifecycle |
 | **docs** | Documentation mode for godoc, README, ADR, API, runbook, changelog, and onboarding work | Generate docstrings (PEP 257), Sphinx/mkdocs, ADRs, runbooks, changelogs | Generate module READMEs, terraform-docs, ADRs, runbooks | Generate chart READMEs, values references, upgrade notes, runbooks | Generate workload docs, manifests guides, runbooks, platform ADRs | Generate CRD, controller, operational, and upgrade documentation |
 | **test** | Test mode for strategy, unit/integration/e2e coverage, fuzzing, benchmarks, and regression work | Design test strategies, write tests (pytest, hypothesis, parametrize, fixtures) | Design test strategies (terraform test, Terratest, OPA/Rego, checkov) | Design chart test strategies (helm lint, template assertions, chart-testing) | Design manifest validation and conformance checks (kustomize, kubectl, policy) | Design envtest, reconciler, finalizer, status, and webhook test coverage |
 | **migrate** | Migration mode for Go versions, dependency swaps, framework changes, architecture shifts, and rollback planning | Plan version upgrades, framework migrations (Flask/Django/FastAPI), packaging modernization | Plan version upgrades, state migrations, module refactoring, backend changes | Plan chart API, values, dependency, and release workflow migrations | Plan API version, controller, workload, and platform migrations | Plan CRD versioning, controller refactors, dependency upgrades, and conversion work |
+| **ci** | Go CI job set grounded in Task + Ginkgo/stdlib + golangci-lint + staticcheck + govulncheck + goreleaser + svu + DCO + REUSE, OS matrix, per-package coverage, perf baselines | Python CI job set: ruff, mypy/pyright, pytest matrix across Python versions, pip-audit, bandit, uv build + twine check, OIDC trusted publishing | n/a | n/a | n/a | n/a |
+
+### Cross-Cutting Skills
+
+| Skill | Description |
+|-------|-------------|
+| **adr-write** | Language-agnostic skill for writing, reviewing, and superseding Architecture Decision Records. MADR-compatible format, supersession rules, grounded in constraints rather than memory. |
+| **planning-decompose** | Turn an ambiguous request into a verifiable plan: goal, acceptance criteria, milestones, per-step verification, risks, and rollback. Hands off to execution-mode skills. |
+| **rfc-write** | Structured RFC proposals with motivation, goals/non-goals, alternatives, impact, rollout, and review plan. Upstream of ADRs: the RFC is the proposal under debate, the ADR records the decision. |
+| **docker-image** | Dockerfile and container image design: scratch → distroless → slim tier preference, multi-stage builds, BuildKit secrets, non-root, digest pinning, SBOM, signing, size budgets. |
+| **security-review** | Stack-agnostic focused security review: threat surfaces, auth, input validation, secrets, transport, supply chain, findings with severity and concrete fix. |
+| **cicd-core** | Platform-agnostic CI/CD principles: stage ordering, reproducibility, secret discipline, artifact immutability, least-privilege credentials, caching, retries, observability. |
+| **cicd-github-actions** | GitHub Actions specifics: reusable workflows, SHA pinning, explicit permissions, OIDC cloud auth, fork-safe triggers, concurrency, matrix, environments, self-hosted runner trust. |
+| **cicd-azure-devops** | ADO YAML pipelines: templates, `extends` for org standards, Library variable groups + Key Vault, workload identity federation for service connections, Environments with approvals. |
+| **cicd-gitops** | Argo CD and Flux patterns: pull-based deploy, PR-driven promotion, sync waves, progressive delivery, SOPS/ESO secret management, RBAC, drift detection. |
+| **cicd-supply-chain** | SLSA levels, SBOM, in-toto/SLSA provenance, Sigstore keyless signing + verification, dependency pinning, vuln scanning, signed commits, reproducible builds, admission-time enforcement. |
 
 ## Quick Start
 
@@ -216,6 +234,47 @@ Structured migration planning with impact analysis, risk assessment, phased exec
 
 Core rule: never migrate and refactor simultaneously.
 
+### adr-write (Architecture Decision Records)
+
+Language-agnostic skill for writing, reviewing, and superseding ADRs. Uses a MADR-compatible template, enforces supersession (new ADR rather than in-place edit), requires honest alternatives and real negative consequences, and grounds every claim in concrete constraints (code, config, incidents, prior ADRs).
+
+Pairs with any language or platform skill: plan the decision with ADR mode, then execute with the relevant dev mode.
+
+### planning-decompose (Task Decomposition)
+
+Turn an ambiguous or large request into a verifiable plan: goal, acceptance criteria, assumptions/unknowns, current vs. target state, milestones with per-step verification, risks with detection and rollback, and explicit sizing. Stops planning when it hits a hidden decision and escalates to `adr-write` or a clarifying question rather than absorbing the decision silently.
+
+Hand off each milestone to the appropriate execution-mode skill; planning-decompose does not implement.
+
+### rfc-write (Request for Comments)
+
+Structured proposals for non-trivial changes to architecture, protocols, tooling, or process. RFC sits upstream of ADR: the RFC is the proposal under discussion, the ADR records the decision. Template covers motivation, goals/non-goals, current state, proposal, real alternatives including "do nothing", impact (users, operators, compatibility, security, performance, cost), rollout plan with reversibility, open questions, and review plan with dates and decision mechanism.
+
+### docker-image (Dockerfile And Container Image)
+
+Container image design with a strong preference order for base images: **scratch → distroless → slim (Alpine, Debian slim) → full distro**. Covers multi-stage builds, BuildKit secrets and cache mounts, non-root UID, read-only root filesystem, digest pinning, OCI metadata labels, SBOM and cosign signing, multi-arch, and size budgets by tier.
+
+### security-review (Security Review)
+
+Stack-agnostic focused security review. Walks ten threat surfaces — authentication, authorization, input validation, secrets, transport/storage, dependencies/supply chain, configuration/deployment, logging/monitoring, cryptography, business logic/abuse. Produces findings grouped by severity (Critical → High → Medium → Low → Info) with location, evidence, impact, exploitability, and concrete fix. Pairs with `cicd-supply-chain` for release integrity and `*-audit` for deeper stack-specific review.
+
+### CI/CD Skill Stack
+
+Five layered CI/CD skills. Start with `cicd-core` (platform-agnostic) and add one or more specialized skills:
+
+- **cicd-core** — principles: stage ordering cheapest-first, reproducibility, secret discipline, artifact immutability, OIDC-preferred credentials, caching rules, retry hygiene, deploy boundary.
+- **cicd-github-actions** — Actions specifics: `pull_request` vs. `pull_request_target` safety, SHA-pinned actions, `permissions: {}` default, OIDC to AWS/GCP/Azure, reusable workflows vs. composite actions, matrix and caching patterns, self-hosted runner trust model.
+- **cicd-azure-devops** — YAML pipelines, step/job/stage/extends templates, Library variable groups + Key Vault, workload identity federation for service connections, ADO Environments with checks, resources (`repositories:`, `pipelines:`, `containers:`).
+- **cicd-gitops** — Argo CD and Flux. Repository layout, Application / Kustomization design, ApplicationSet generators, sync waves, progressive delivery with Argo Rollouts / Flagger, SOPS / External Secrets / Sealed Secrets, RBAC and drift detection, promotion via PR.
+- **cicd-supply-chain** — SLSA levels, SBOM (SPDX/CycloneDX), in-toto and SLSA provenance, Sigstore keyless signing + Rekor verification, dependency pinning, vulnerability scanning with failure criteria, signed commits (gitsign), admission-time verification with Kyverno / Sigstore policy-controller.
+
+### Language-Specific CI
+
+Per-language CI skills with concrete job sets, toolchain pinning strategy, and publish workflows:
+
+- **go-ci** — Task runner, Ginkgo or stdlib testing, golangci-lint, staticcheck, govulncheck, goreleaser, svu, DCO and REUSE when required, cross-OS matrix, per-package coverage thresholds, benchmark history as artifact, CI summary.
+- **python-ci** — uv (or poetry) with lockfile integrity check, ruff (lint + format), mypy or pyright, pytest matrix across supported Python versions, pip-audit, bandit, uv build + twine check, OIDC trusted publishing to PyPI.
+
 ## Versioning
 
 All skills are versioned using a `<!-- version: X.Y.Z -->` comment at the top of each file. The installer detects existing installations and reports:
@@ -238,6 +297,7 @@ Copyright attribution for the repository and included skills is `Skaphos`.
 skills/
 ├── go/
 │   ├── audit.skill.md
+│   ├── ci.skill.md
 │   ├── dev.skill.md
 │   ├── docs.skill.md
 │   ├── migrate.skill.md
@@ -246,6 +306,7 @@ skills/
 │   └── workflow.skill.md
 ├── python/
 │   ├── audit.skill.md
+│   ├── ci.skill.md
 │   ├── dev.skill.md
 │   ├── docs.skill.md
 │   ├── migrate.skill.md
@@ -276,6 +337,22 @@ skills/
 │   ├── docs.skill.md
 │   ├── migrate.skill.md
 │   └── test.skill.md
+├── adr/
+│   └── write.skill.md
+├── planning/
+│   └── decompose.skill.md
+├── rfc/
+│   └── write.skill.md
+├── docker/
+│   └── image.skill.md
+├── security/
+│   └── review.skill.md
+├── cicd/
+│   ├── azure-devops.skill.md
+│   ├── core.skill.md
+│   ├── github-actions.skill.md
+│   ├── gitops.skill.md
+│   └── supply-chain.skill.md
 ├── install.sh
 └── README.md
 ```

@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.1.0 -->
+<!-- version: 2.2.0 -->
 # Go Audit Mode
 
 ## Purpose
@@ -18,6 +18,14 @@ This mode exists because audit work has materially different output constraints,
 - Treat this skill as the governing audit contract for the turn or session.
 - Keep repository-specific instructions in the invoking prompt.
 - Use this skill phase by phase. Do not treat it as permission to compress the whole audit into one response.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Every factual claim in an audit must come from a tool invocation, not inference. Read the file, search the symbol, or run the command before writing the finding.
+- Prefer structural or type-aware tooling (LSP, `gopls`) for references and call graphs; fall back to text search only when it is not available.
+- Issue independent tool calls in parallel: inventory scans, symbol lookups, and multi-file reads should be batched.
+- If evidence cannot be gathered, record it under `UNREVIEWED/INACCESSIBLE` rather than guessing.
 
 ## When To Use
 Use this skill when the user asks for:

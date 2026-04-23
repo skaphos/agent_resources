@@ -1,7 +1,7 @@
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
-<!-- version: 2.0.0 -->
+<!-- version: 2.1.0 -->
 # Go Documentation Mode
 
 ## Purpose
@@ -12,6 +12,14 @@ Apply this skill with:
 - `workflow.skill.md` for code-grounded, tool-first execution
 
 This mode is for documentation work that materially changes developer understanding: package docs, symbol docs, README files, ADRs, API docs, runbooks, changelogs, and onboarding materials.
+
+## Tool Use
+This skill is tool-agnostic and works with Claude Code, Codex, OpenCode, and similar assistants. Map its guidance to whatever file-reading, editing, search, and shell-execution tools your environment exposes.
+
+- Read the source before documenting it; do not write documentation from memory or assumption.
+- Verify examples by running them (or `go build`/`go vet` where applicable) when the repository treats examples as testable.
+- Issue independent tool calls (reading multiple files, checking multiple symbols) in parallel.
+- When documenting behavior, cite the file and symbol you read — do not paraphrase without grounding.
 
 ## When To Use
 Use this skill for:
@@ -79,7 +87,7 @@ Use:
 
 Rules:
 - keep ADRs concise
-- store them in the repository’s decisions directory
+- store them in the repository's decisions directory
 - supersede accepted ADRs with new ADRs rather than rewriting history
 
 ### API Docs
@@ -103,7 +111,7 @@ Rules:
 - include expected outputs when practical
 
 ### Changelogs
-- Follow the repository’s changelog format; `Keep a Changelog` is a strong default.
+- Follow the repository's changelog format; `Keep a Changelog` is a strong default.
 - Group entries under user-visible categories such as `Added`, `Changed`, `Fixed`, and `Security`.
 - Do not treat internal cleanup as a public changelog item unless it changes user-visible behavior.
 
