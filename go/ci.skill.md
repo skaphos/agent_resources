@@ -1,6 +1,6 @@
 ---
 name: go-ci
-description: Use when designing or modifying CI for a Go project — `.github/workflows/*.yml`, `azure-pipelines.yml`, `Taskfile.yml` / `Makefile`. Defines the DCO / lint / vet / race-test / coverage / vuln / static-analysis / release job set. Default toolchain is golangci-lint + staticcheck + govulncheck + goreleaser, with `actions/setup-go@... go-version-file: go.mod`. Pair with `cicd-*` skills and `go-test` / `go-policy`.
+description: Use when designing or modifying CI for a Go project — `.github/workflows/*.yml`, `azure-pipelines.yml`, `Taskfile.yml` / `Makefile`. Defines the DCO / lint / vet / race-test / coverage / vuln / static-analysis / release job set. Default toolchain is golangci-lint + staticcheck + govulncheck + goreleaser, with `actions/setup-go@...` pinned via `go.mod`. Pair with `cicd-*` skills and `go-test` / `go-policy`.
 ---
 
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->

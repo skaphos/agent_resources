@@ -3,6 +3,13 @@
 
 # LLM Coding Skills
 
+> **This repository is archived.**
+>
+> Active development has moved to [`github.com/rillanai/rillan-skills`](https://github.com/rillanai/rillan-skills),
+> which adds a project-scoped Go installer (`rillan-skills`) and is licensed under Apache-2.0.
+> This snapshot remains available under the MIT license for anyone consuming it
+> at this path; new fixes, packs, and tooling will land in the Rillan repo.
+
 A curated set of skills for LLM-powered coding assistants. Each skill is a structured prompt that gives your AI assistant deep, opinionated guidance for a specific task type — turning a general-purpose LLM into a focused specialist.
 
 Skills are tool-agnostic and work with **Claude Code**, **Codex**, and **OpenCode**.
