@@ -1,3 +1,8 @@
+---
+name: operator-docs
+description: Use when documenting Kubernetes operator behavior — CRDs and API contracts, reconciliation semantics, ownership, status/conditions, finalizers, webhook semantics, install/upgrade/rollback guides, operational runbooks. Read API types and generated CRDs before writing. Skip for code-only changes without doc deliverable.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

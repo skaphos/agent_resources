@@ -1,3 +1,8 @@
+---
+name: helm-test
+description: Use when designing validation or test strategy for Helm charts — `helm lint`, `helm template` regression checks, `values.schema.json`, chart-testing/snapshot/policy assertions, install tests for hooks. Treat CRDs, hooks, and stateful resources as upgrade-risk areas needing explicit coverage. Skip for non-chart Kubernetes manifests.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

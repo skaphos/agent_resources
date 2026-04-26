@@ -1,3 +1,8 @@
+---
+name: go-policy
+description: Use as the Go standards layer (DRY/KISS/YAGNI, project structure with thin `cmd/*/main.go`, design priorities, review bar) for any Go implementation, review, refactor, migration, documentation, or audit work. Pair with `go-workflow` for execution discipline. Repo-specific stricter rules win when explicit and defensible.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

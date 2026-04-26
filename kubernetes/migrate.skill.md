@@ -1,3 +1,8 @@
+---
+name: kubernetes-migrate
+description: Use when planning Kubernetes manifest migrations — deprecated API version transitions, controller swaps, workload identity changes, storage class / PVC / StatefulSet transitions, label/selector changes that affect routing, security policy adoption that can block existing pods at admission. Skip for ordinary manifest edits or rollout debugging.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

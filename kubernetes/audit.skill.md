@@ -1,3 +1,8 @@
+---
+name: kubernetes-audit
+description: Use for a phased, evidence-based audit of Kubernetes manifests and platform configuration — workload boundaries, security/RBAC, operability, policy conformance, deployment safety. The user must invoke this explicitly and supply scope + phase. Skip for ordinary edits or one-change reviews.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

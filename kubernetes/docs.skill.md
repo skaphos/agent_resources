@@ -1,3 +1,8 @@
+---
+name: kubernetes-docs
+description: Use when documenting Kubernetes resources, deployment flows, overlay usage, environment setup, rollout/rollback runbooks, or controller migration notes. Cite manifest paths; document secret contracts, never secret content. Skip for code changes without a doc deliverable.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

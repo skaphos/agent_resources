@@ -1,3 +1,8 @@
+---
+name: python-dev
+description: Use when implementing or modifying Python code — feature work, bug fixes, targeted refactors, or cleanup tied to behavior change. Thin overlay; pair with `python-policy` (quality bar) and `python-workflow` (verification flow). Skip for documentation-only or test-only work (use `python-docs` / `python-test`).
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

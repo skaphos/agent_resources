@@ -1,3 +1,8 @@
+---
+name: operator-dev
+description: Use when building or modifying Kubernetes operators in Go (kubebuilder, controller-runtime, achilles-sdk). Triggers on edits to API types, reconcilers, watch wiring, finalizers, status/conditions, webhooks, or controller-runtime manager setup. Pair with `go-policy` and `go-workflow`. Skip for ordinary Go work without controller scope.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

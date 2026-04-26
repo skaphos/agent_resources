@@ -1,3 +1,8 @@
+---
+name: python-test
+description: Use when designing, writing, reviewing, or refactoring Python tests — pytest unit/integration/e2e, async, fixtures, coverage analysis, regression tests, property-based, doctest, snapshot/golden-file. Run the tests you write before claiming done. Pair with `python-policy` and `python-workflow`. Skip for production-code review or documentation.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

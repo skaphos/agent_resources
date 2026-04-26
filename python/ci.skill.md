@@ -1,3 +1,8 @@
+---
+name: python-ci
+description: Use when designing or modifying CI for a Python project — `.github/workflows/*.yml`, `azure-pipelines.yml`, `tox.ini` / `noxfile.py`. Defines the lockfile-integrity / lint / type-check / test / coverage / security-scan / build / publish job set. Default toolchain is uv + ruff + mypy or pyright + pytest + nox + OIDC trusted publishing. Pair with `cicd-*` skills and `python-test` / `python-policy`.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

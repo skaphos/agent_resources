@@ -1,3 +1,8 @@
+---
+name: helm-docs
+description: Use when writing or updating Helm chart docs — chart README, `values.yaml` reference tables, override examples, upgrade/rollback notes, runbooks for rendering/linting/packaging, release guidance. Treat `values.yaml` as a public contract. Skip for chart code changes without a doc deliverable.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

@@ -1,3 +1,8 @@
+---
+name: cicd-core
+description: Use as the platform-agnostic CI/CD layer for any pipeline (GitHub Actions, Azure DevOps, GitLab, Jenkins, Buildkite, CircleCI, Tekton). Defines stage ordering, fast-feedback discipline, secret hygiene, immutable artifacts, least-privilege credentials, observable failure. Pair with a platform-specific skill (`cicd-github-actions`, `cicd-azure-devops`) or use alone for pre-platform pipeline design.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

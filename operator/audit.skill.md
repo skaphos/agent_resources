@@ -1,3 +1,8 @@
+---
+name: operator-audit
+description: Use for a phased, evidence-based deep audit of a Kubernetes operator codebase — reconciler correctness, CRD/webhook/status models, lifecycle and upgrade safety. The user must invoke this explicitly and supply repo path + phase. Skip for ordinary controller work or narrow bug hunts.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

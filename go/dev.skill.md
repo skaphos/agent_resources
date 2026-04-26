@@ -1,3 +1,8 @@
+---
+name: go-dev
+description: Use when implementing or modifying Go code — feature work, bug fixes, targeted refactors, or cleanup tied to behavior change. Thin overlay; pair with `go-policy` (quality bar) and `go-workflow` (verification flow). Skip for documentation-only or test-only work (use `go-docs` / `go-test`).
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

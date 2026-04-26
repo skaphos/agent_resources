@@ -1,3 +1,8 @@
+---
+name: go-workflow
+description: Use as the Go execution layer — tool-first discovery, structural tooling (gopls), parallel tool calls, evidence over inference, truth hierarchy. Default execution contract for understanding/modifying/debugging/reviewing Go. Pair with `go-policy` (standards) and any Go mode skill.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

@@ -1,3 +1,8 @@
+---
+name: python-policy
+description: Use as the Python standards layer (DRY/KISS/YAGNI, project structure, design priorities, review bar) for any Python implementation, review, refactor, migration, documentation, or audit work. Pair with `python-workflow` for execution discipline. Repo-specific stricter rules win when explicit and defensible.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

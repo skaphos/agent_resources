@@ -1,3 +1,8 @@
+---
+name: planning-decompose
+description: Use to break an ambiguous request, vague goal, or large change into a concrete plan of verifiable steps with explicit assumptions, sequencing, and rollback boundaries. Stack-agnostic; hand off each step to an execution-mode skill. Skip for single-file edits, well-scoped tickets, or speculative exploration.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

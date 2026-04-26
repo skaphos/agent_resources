@@ -1,3 +1,8 @@
+---
+name: python-workflow
+description: Use as the Python execution layer — tool-first discovery, structural tooling (LSP, pyright, mypy), parallel tool calls, evidence over inference, truth hierarchy. Default execution contract for understanding/modifying/debugging/reviewing Python. Pair with `python-policy` (standards) and any Python mode skill.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

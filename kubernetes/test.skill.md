@@ -1,3 +1,8 @@
+---
+name: kubernetes-test
+description: Use when designing validation or test strategy for Kubernetes manifests — `kubeconform`, `kubectl apply --dry-run=server`, policy tools (`conftest`, `kyverno test`, `gator`), render diffs, deprecated-API checks. Covers Deployments, StatefulSets, Services, Ingress, HPAs, PDBs, RBAC, storage. Skip for ordinary manifest edits without a test deliverable.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

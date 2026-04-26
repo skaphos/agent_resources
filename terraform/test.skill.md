@@ -1,3 +1,8 @@
+---
+name: terraform-test
+description: Use when designing or writing Terraform tests — `.tftest.hcl`, variable validation, preconditions/postconditions, mock providers for cloud-agnostic testing, multi-cloud module testing across Azure/GCP/vSphere, compliance scanning recommendations (tfsec, checkov, trivy, OPA). Skip for code changes, docs, or migration planning.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

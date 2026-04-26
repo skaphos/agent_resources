@@ -1,3 +1,8 @@
+---
+name: go-audit
+description: Use for a phased, evidence-based deep audit of a Go codebase. The user must invoke this explicitly and supply repo path + phase. Skip for small patch reviews, narrow bug hunts, or ordinary implementation work.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

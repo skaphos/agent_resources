@@ -1,3 +1,8 @@
+---
+name: adr-write
+description: Use to author, review, or supersede Architecture Decision Records (ADRs) — short, immutable records of architecturally significant decisions, their constraints, options considered, and consequences. Stack-agnostic. Skip for routine implementation choices (no ADR needed) or behavior documentation (use a docs skill).
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

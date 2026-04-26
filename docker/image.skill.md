@@ -1,3 +1,8 @@
+---
+name: docker-image
+description: Use when writing or reviewing Dockerfiles or OCI container images — base selection (scratch → distroless → slim), multi-stage builds, non-root user, layer discipline, BuildKit secret handling, SBOM, signing, multi-arch, registry labels. Pin bases by digest. Pair with `kubernetes-dev` for runtime concerns.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

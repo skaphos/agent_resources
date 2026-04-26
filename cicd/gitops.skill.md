@@ -1,3 +1,8 @@
+---
+name: cicd-gitops
+description: Use when designing or modifying GitOps deploy workflows with Argo CD or Flux — `Application`/`ApplicationSet`, `Kustomization`/`HelmRelease`, config-repo structure, PR-driven promotion, progressive delivery, drift detection, secret management, RBAC. Pair with `cicd-core`, `cicd-supply-chain`, `kubernetes-dev`. Triggers on edits to Argo/Flux manifests or config-repo layout.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

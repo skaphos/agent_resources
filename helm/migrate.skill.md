@@ -1,3 +1,8 @@
+---
+name: helm-migrate
+description: Use when planning Helm chart migrations — chart API changes, `values.yaml` key renames or default changes, dependency/subchart upgrades, repository moves, release-process changes, CRD upgrade ordering, hook lifecycle changes, resource renames that orphan or recreate workloads. Skip for non-breaking chart edits or new charts.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

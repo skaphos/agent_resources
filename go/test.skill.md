@@ -1,3 +1,8 @@
+---
+name: go-test
+description: Use when designing, writing, reviewing, or refactoring Go tests — stdlib testing or Ginkgo, table-driven tests, race detector, fuzz, benchmarks, golden files, integration/e2e, regression tests, coverage analysis. Run the tests you write before claiming done. Pair with `go-policy` and `go-workflow`. Skip for production-code review or documentation.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

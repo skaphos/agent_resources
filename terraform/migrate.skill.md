@@ -1,3 +1,8 @@
+---
+name: terraform-migrate
+description: Use when planning Terraform migrations — Terraform version bumps (1.x→1.y), provider upgrades with breaking changes, state operations (`moved`, `import`, backend changes), TFC workspace restructuring, monolith→multi-workspace state splits, Terraform→OpenTofu, importing existing infra. Treat state as the most critical artifact. Skip for routine apply or new code.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

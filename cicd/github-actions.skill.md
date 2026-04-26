@@ -1,3 +1,8 @@
+---
+name: cicd-github-actions
+description: Use when designing, modifying, or reviewing GitHub Actions — files under `.github/workflows/` or `action.yml`. Covers reusable workflows, action pinning by SHA, OIDC cloud auth, job permissions, concurrency, matrix strategies, caching, environments, and `pull_request_target` safety. Pair with `cicd-core` and `cicd-supply-chain`.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

@@ -1,3 +1,8 @@
+---
+name: operator-migrate
+description: Use when planning operator migrations — CRD version flips, storage version changes, conversion webhooks, controller-runtime upgrades, achilles-sdk adoption, finalizer or owner-reference changes, reconciliation-model rewrites. Skip for greenfield operator work or routine implementation.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

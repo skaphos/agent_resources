@@ -1,3 +1,8 @@
+---
+name: kubernetes-dev
+description: Use when writing, modifying, or reviewing Kubernetes manifests, Kustomize bases or overlays, and platform-facing resource definitions. Covers selectors/labels, probes, resources, security context, NetworkPolicy, PDBs, rollout strategy. Verify with `kustomize build` and `kubectl apply --dry-run=server`. Skip for chart packaging (use `helm-dev`) or controllers (use `operator-dev`).
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

@@ -1,3 +1,8 @@
+---
+name: go-docs
+description: Use when generating, reviewing, or maintaining Go documentation — `doc.go` and package docs, exported symbol comments, READMEs, ADRs, API docs, runbooks, changelogs, onboarding. Read source first; document actual behavior, not intent. Skip for logic review, security audit, architecture grading, or test design.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

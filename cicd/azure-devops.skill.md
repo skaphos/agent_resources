@@ -1,3 +1,8 @@
+---
+name: cicd-azure-devops
+description: Use when designing, modifying, or reviewing Azure DevOps YAML pipelines — `azure-pipelines.yml`, templates under `pipelines/` or `.azure/`, `extends` templates, variable groups, Key Vault integration, service connections, environments and approvals, workload identity. Skip for Classic UI pipelines except to migrate them to YAML.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

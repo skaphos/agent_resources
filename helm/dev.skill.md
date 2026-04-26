@@ -1,3 +1,8 @@
+---
+name: helm-dev
+description: Use when writing, modifying, or reviewing Helm charts — `Chart.yaml`, `values.yaml`, `templates/`, helpers, subcharts. Treat `values.yaml` as a public API. Verify with `helm lint` and `helm template` against representative values files. Skip for raw manifests (use `kubernetes-dev`).
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

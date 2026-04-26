@@ -247,8 +247,9 @@ install_codex_skill() {
     title="$(skill_title "$src")"
 
     # Codex requires SKILL.md with name + description frontmatter.
-    # Skip the version comment line when checking for existing frontmatter.
-    if grep -q '^---' "$src"; then
+    # Only treat the file as having frontmatter if `---` is the very first line —
+    # source files often contain `---` YAML separators inside example code blocks.
+    if [ "$(head -1 "$src")" = "---" ]; then
         cp "$src" "$dest"
     else
         {
@@ -266,7 +267,7 @@ install_codex_skill() {
 
 install_opencode_skill() {
     local lang="$1" file="$2"
-    local name src dest title
+    local name src dest title description body
     name="$(skill_name "$lang" "$file")"
     src="${SCRIPT_DIR}/${lang}/${file}"
     dest="${OPENCODE_AGENTS_DIR}/${name}.md"
@@ -279,15 +280,38 @@ install_opencode_skill() {
     fi
 
     mkdir -p "${OPENCODE_AGENTS_DIR}"
-    title="$(skill_title "$src")"
 
-    {
-        echo "---"
-        echo "description: \"${title}\""
-        echo "---"
-        echo ""
-        cat "$src"
-    } > "$dest"
+    if [ "$(head -1 "$src")" = "---" ]; then
+        # Source has frontmatter — extract its description and emit body without source frontmatter.
+        # OpenCode wants its own `description` (quoted); `name:` from source is dropped.
+        description="$(awk '
+            BEGIN { n = 0 }
+            /^---$/ { n++; next }
+            n == 1 && /^description:[[:space:]]*/ {
+                sub(/^description:[[:space:]]*/, "")
+                gsub(/^"|"$/, "")
+                print
+                exit
+            }
+        ' "$src")"
+        body="$(awk 'BEGIN { n = 0 } /^---$/ { n++; next } n >= 2 { print }' "$src")"
+        {
+            echo "---"
+            echo "description: \"${description}\""
+            echo "---"
+            echo ""
+            echo "$body"
+        } > "$dest"
+    else
+        title="$(skill_title "$src")"
+        {
+            echo "---"
+            echo "description: \"${title}\""
+            echo "---"
+            echo ""
+            cat "$src"
+        } > "$dest"
+    fi
 
     log_info "OpenCode: installed ${BOLD}@${name}${NC} agent"
 }

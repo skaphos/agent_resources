@@ -1,3 +1,8 @@
+---
+name: operator-test
+description: Use when designing or writing tests for Kubernetes operators in Go — reconciler unit tests, envtest, fake-client, webhook validation/defaulting tests, and CRD generation checks. Pair with `go-test`, `go-policy`, `go-workflow`. Skip for non-controller Go tests.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

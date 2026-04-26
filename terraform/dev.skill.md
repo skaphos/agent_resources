@@ -1,3 +1,8 @@
+---
+name: terraform-dev
+description: Use when writing, modifying, or reviewing Terraform/HCL — module development, resource additions, refactors, environment promotion, state-management changes. Default contract for IaC reliability, security, modularity, and reviewability. Verify with `terraform fmt`, `terraform validate`, and `terraform plan`. Skip for tests (use `terraform-test`), docs, or migrations.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

@@ -1,3 +1,8 @@
+---
+name: rfc-write
+description: Use to author, review, or revise Request for Comments (RFC) documents — proposals for non-trivial cross-team or hard-to-reverse changes that need discussion before commitment. RFC is upstream of an ADR (proposal vs. decision). Skip for already-decided choices (use `adr-write`) or single-team implementation that can be settled in a PR.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

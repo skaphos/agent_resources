@@ -1,3 +1,8 @@
+---
+name: go-migrate
+description: Use when planning or executing Go migrations — Go version upgrade, dependency replacement, framework swap, package or service extraction, schema/API transitions, legacy modernization with compatibility constraints. Prefer reversibility over speed. Skip for greenfield code or isolated bug fixes without a migration dimension.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

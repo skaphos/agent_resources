@@ -1,3 +1,8 @@
+---
+name: security-review
+description: Use to run a focused security review of code, configuration, or infrastructure across Go, Python, Terraform, Helm, Kubernetes, CI/CD, or Dockerfiles. Produces prioritized findings backed by tool evidence (gosec, bandit, semgrep, trivy, gitleaks, checkov, tfsec, kubesec, kyverno test). Skip for deep architecture audits (use `*-audit`) or ordinary PR review.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

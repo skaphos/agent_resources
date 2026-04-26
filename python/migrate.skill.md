@@ -1,3 +1,8 @@
+---
+name: python-migrate
+description: Use when planning or executing Python migrations — Python version upgrade, dependency replacement, framework swap, sync→async, packaging modernization (setup.py→pyproject), schema/API transitions, module restructuring. Prefer reversibility over speed. Skip for greenfield code or isolated bug fixes without a migration dimension.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

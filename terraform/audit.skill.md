@@ -1,3 +1,8 @@
+---
+name: terraform-audit
+description: Use for a phased, evidence-based deep audit of a Terraform codebase — resource accounting, architecture, security/compliance, modernization recommendations. The user must invoke this explicitly and supply repo path + phase. Skip for one-change reviews, narrow bug hunts, or pure security-only reviews (use `security-review`).
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

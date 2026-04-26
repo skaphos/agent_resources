@@ -1,3 +1,8 @@
+---
+name: helm-audit
+description: Use for a phased, evidence-based audit of Helm charts and chart repositories — chart structure, values surface, template safety, release ergonomics, upgrade risk, operational clarity. The user must invoke this explicitly and supply scope + phase. Skip for ordinary template edits or one-change patch reviews.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

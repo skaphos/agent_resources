@@ -1,3 +1,8 @@
+---
+name: cicd-supply-chain
+description: Use when adding or hardening supply-chain controls — SBOM generation (syft, CycloneDX), provenance attestations (SLSA), artifact signing/verification (cosign, sigstore), dependency pinning, vulnerability scanning (trivy, grype), signed commits, reproducible builds, and admission-time verification. Pair with `cicd-core` and the platform-specific CI skills.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 

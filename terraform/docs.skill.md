@@ -1,3 +1,8 @@
+---
+name: terraform-docs
+description: Use when generating or reviewing Terraform documentation — module READMEs (terraform-docs), input/output descriptions, ADRs for IaC choices, runbooks, AGENTS.md contributor guidance, TFC workspace docs (naming, cross-workspace refs), environment promotion docs, changelogs. Skip for code, tests, or migration plans.
+---
+
 <!-- SPDX-FileCopyrightText: 2026 Skaphos -->
 <!-- SPDX-License-Identifier: MIT -->
 
