@@ -56,7 +56,7 @@ CODEX_SKILLS_DIR="${HOME}/.agents/skills"
 OPENCODE_AGENTS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/opencode/agents"
 
 VALID_TOOLS="claude codex opencode"
-LANGUAGES=(go python terraform helm kubernetes operator adr planning docker security cicd rfc)
+LANGUAGES=(go rust python terraform helm kubernetes operator adr planning docker security cicd rfc)
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Version helpers
@@ -591,7 +591,7 @@ Options:
   --uninstall             Remove installed skills
   --dry-run               Show what would happen without making changes
   --tool=<t1[,t2,...]>    Install for specific tool(s): claude, codex, opencode
-  --lang=<l1[,l2,...]>    Install specific skill group(s): go, python, terraform, helm, kubernetes, operator, adr, planning, docker, security, cicd, rfc
+  --lang=<l1[,l2,...]>    Install specific skill group(s): go, rust, python, terraform, helm, kubernetes, operator, adr, planning, docker, security, cicd, rfc
   -h, --help              Show this help
 
 Examples:

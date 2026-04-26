@@ -11,16 +11,16 @@ Skills are tool-agnostic and work with **Claude Code**, **Codex**, and **OpenCod
 
 ### Language And Platform Skills
 
-| Skill | Go | Python | Terraform | Helm | Kubernetes | Operator |
-|-------|----|--------|-----------|------|------------|----------|
-| **policy** | Standards layer for Go design, boundaries, errors, context, concurrency, config, observability, security, and review priorities | Standards layer for Python design, boundaries, exceptions, typing, dependency injection, concurrency, config, observability, security, and review priorities | n/a | n/a | n/a | n/a |
-| **workflow** | Execution layer for Go work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | Execution layer for Python work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | n/a | n/a | n/a | n/a |
-| **dev** | Thin implementation mode layered on top of Go policy and workflow | Thin implementation mode layered on top of Python policy and workflow | Write, modify, and review HCL with IaC best practices | Write, modify, and review Helm charts and release packaging | Write, modify, and review Kubernetes manifests with PSS-Restricted baseline, topology spread, and Kustomize best practices | Build controllers, APIs, reconcilers, webhooks, and operator wiring with kubebuilder/controller-runtime |
-| **audit** | Resumable 5-stage deep-dive audit with evidence, chunking, and phase gates | Resumable 5-stage deep-dive audit adapted for Python codebases and tooling | Resumable 5-stage infrastructure audit: resources, state, security, compliance | Resumable 5-stage chart audit: values surface, templates, release safety, upgrade risk | Resumable 5-stage cluster-manifest audit: resources, boundaries, security, operability | Resumable 5-stage operator audit: APIs, reconciliation, status, safety, and lifecycle |
-| **docs** | Documentation mode for godoc, README, ADR, API, runbook, changelog, and onboarding work | Generate docstrings (PEP 257), Sphinx/mkdocs, ADRs, runbooks, changelogs | Generate module READMEs, terraform-docs, ADRs, runbooks | Generate chart READMEs, values references, upgrade notes, runbooks | Generate workload docs, manifests guides, runbooks, platform ADRs | Generate CRD, controller, operational, and upgrade documentation |
-| **test** | Test mode for strategy, unit/integration/e2e coverage, fuzzing, benchmarks, and regression work | Design test strategies, write tests (pytest, hypothesis, parametrize, fixtures) | Design test strategies (terraform test, Terratest, OPA/Rego, checkov) | Design chart test strategies (helm lint, template assertions, chart-testing) | Design manifest validation and conformance checks (kustomize, kubectl, policy) | Design envtest, reconciler, finalizer, status, and webhook test coverage |
-| **migrate** | Migration mode for Go versions, dependency swaps, framework changes, architecture shifts, and rollback planning | Plan version upgrades, framework migrations (Flask/Django/FastAPI), packaging modernization | Plan version upgrades, state migrations, module refactoring, backend changes | Plan chart API, values, dependency, and release workflow migrations | Plan API version, controller, workload, and platform migrations | Plan CRD versioning, controller refactors, dependency upgrades, and conversion work |
-| **ci** | Go CI job set grounded in Task + Ginkgo/stdlib + golangci-lint + staticcheck + govulncheck + goreleaser + svu + DCO + REUSE, OS matrix, per-package coverage, perf baselines | Python CI job set: ruff, mypy/pyright, pytest matrix across Python versions, pip-audit, bandit, uv build + twine check, OIDC trusted publishing | n/a | n/a | n/a | n/a |
+| Skill | Go | Rust | Python | Terraform | Helm | Kubernetes | Operator |
+|-------|----|------|--------|-----------|------|------------|----------|
+| **policy** | Standards layer for Go design, boundaries, errors, context, concurrency, config, observability, security, and review priorities | Standards layer for Rust design, ownership and borrowing, error handling, `unsafe` policy, async lifecycle, traits and generics, observability, security, and review priorities | Standards layer for Python design, boundaries, exceptions, typing, dependency injection, concurrency, config, observability, security, and review priorities | n/a | n/a | n/a | n/a |
+| **workflow** | Execution layer for Go work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | Execution layer for Rust work: rust-analyzer-first discovery, compiler-as-truth, parallel tool calls, verification depth proportional to risk | Execution layer for Python work: tool-first discovery, truth hierarchy, verification depth, and task-mode workflow | n/a | n/a | n/a | n/a |
+| **dev** | Thin implementation mode layered on top of Go policy and workflow | Thin implementation mode layered on top of Rust policy and workflow | Thin implementation mode layered on top of Python policy and workflow | Write, modify, and review HCL with IaC best practices | Write, modify, and review Helm charts and release packaging | Write, modify, and review Kubernetes manifests with PSS-Restricted baseline, topology spread, and Kustomize best practices | Build controllers, APIs, reconcilers, webhooks, and operator wiring with kubebuilder/controller-runtime |
+| **audit** | Resumable 5-stage deep-dive audit with evidence, chunking, and phase gates | Resumable 5-stage deep-dive audit including `unsafe` soundness, async lifecycle, public API stability, and supply-chain coverage | Resumable 5-stage deep-dive audit adapted for Python codebases and tooling | Resumable 5-stage infrastructure audit: resources, state, security, compliance | Resumable 5-stage chart audit: values surface, templates, release safety, upgrade risk | Resumable 5-stage cluster-manifest audit: resources, boundaries, security, operability | Resumable 5-stage operator audit: APIs, reconciliation, status, safety, and lifecycle |
+| **docs** | Documentation mode for godoc, README, ADR, API, runbook, changelog, and onboarding work | Documentation mode for `///` and `//!` doc comments, doctests, `cargo doc`, mdbook guides, READMEs, ADRs, runbooks, changelogs | Generate docstrings (PEP 257), Sphinx/mkdocs, ADRs, runbooks, changelogs | Generate module READMEs, terraform-docs, ADRs, runbooks | Generate chart READMEs, values references, upgrade notes, runbooks | Generate workload docs, manifests guides, runbooks, platform ADRs | Generate CRD, controller, operational, and upgrade documentation |
+| **test** | Test mode for strategy, unit/integration/e2e coverage, fuzzing, benchmarks, and regression work | Test mode for unit, integration (`tests/`), doctests, `cargo nextest`, `proptest`/`quickcheck`, `cargo-fuzz`, `criterion`, `insta` snapshots, `miri`, and coverage with `cargo llvm-cov` | Design test strategies, write tests (pytest, hypothesis, parametrize, fixtures) | Design test strategies (terraform test, Terratest, OPA/Rego, checkov) | Design chart test strategies (helm lint, template assertions, chart-testing) | Design manifest validation and conformance checks (kustomize, kubectl, policy) | Design envtest, reconciler, finalizer, status, and webhook test coverage |
+| **migrate** | Migration mode for Go versions, dependency swaps, framework changes, architecture shifts, and rollback planning | Migration mode for edition upgrades, MSRV bumps, async-runtime swaps, framework migrations (e.g., actix→axum), removing `unsafe`, workspace restructuring, dependency replacement | Plan version upgrades, framework migrations (Flask/Django/FastAPI), packaging modernization | Plan version upgrades, state migrations, module refactoring, backend changes | Plan chart API, values, dependency, and release workflow migrations | Plan API version, controller, workload, and platform migrations | Plan CRD versioning, controller refactors, dependency upgrades, and conversion work |
+| **ci** | Go CI job set grounded in Task + Ginkgo/stdlib + golangci-lint + staticcheck + govulncheck + goreleaser + svu + DCO + REUSE, OS matrix, per-package coverage, perf baselines | Rust CI job set: `rust-toolchain.toml`-pinned + `Swatinem/rust-cache` + rustfmt + clippy `-D warnings` + `cargo nextest` matrix + `cargo llvm-cov` coverage + `cargo doc` + `cargo deny` + `cargo audit` + MSRV verify + `miri` for unsafe + `release-plz`/`cargo-dist` | Python CI job set: ruff, mypy/pyright, pytest matrix across Python versions, pip-audit, bandit, uv build + twine check, OIDC trusted publishing | n/a | n/a | n/a | n/a |
 
 ### Cross-Cutting Skills
 
@@ -61,6 +61,9 @@ Install for specific tools or languages:
 # Only Go and Python skills
 ./install.sh --lang=go,python
 
+# Only Rust skills
+./install.sh --lang=rust
+
 # Combine filters
 ./install.sh --tool=claude --lang=terraform
 
@@ -93,7 +96,7 @@ Once installed, skills are invoked differently depending on your tool:
 
 ### Layered stacks vs. single-mode stacks
 
-The Go and Python stacks are layered:
+The Go, Rust, and Python stacks are layered:
 
 - Start with `workflow` as the default entrypoint for most work.
 - Add `policy` when you want the standards layer made explicit.
@@ -173,9 +176,18 @@ The Python stack now uses the same layered model:
 
 This gives the Python stack the same explicit precedence model and reduces duplicated boilerplate across skills.
 
+### Rust policy + workflow
+
+The Rust stack uses the same layered model:
+
+- **policy** defines what good Rust engineering looks like: crate and module boundaries, ownership and borrowing discipline, traits and generics, error handling (`thiserror` for libraries, `anyhow` for apps), `unsafe` policy with `// SAFETY:` comments, async lifecycle (cancellation, drop, blocking), Cargo features, edition and MSRV, observability with `tracing`, security, and review priorities.
+- **workflow** defines how Rust work should be executed: `rust-analyzer`-first discovery, the compiler as the cheapest verifier, parallel tool calls, `cargo expand` for macro-heavy paths, `miri` for `unsafe`, verification depth proportional to risk.
+- **dev**, **audit**, **docs**, **test**, and **migrate** are task modes layered on top of policy and workflow.
+- In normal use, start with **workflow** and add a task mode only when the work is clearly specialized.
+
 ### dev (Development Guidance)
 
-For Go and Python, `dev` is now a thin implementation mode layered on top of language-specific policy and workflow. For Terraform, `dev` remains the core coding skill.
+For Go, Rust, and Python, `dev` is now a thin implementation mode layered on top of language-specific policy and workflow. For Terraform, `dev` remains the core coding skill.
 
 ### audit (Audit Deep Dive)
 
@@ -273,6 +285,7 @@ Five layered CI/CD skills. Start with `cicd-core` (platform-agnostic) and add on
 Per-language CI skills with concrete job sets, toolchain pinning strategy, and publish workflows:
 
 - **go-ci** — Task runner, Ginkgo or stdlib testing, golangci-lint, staticcheck, govulncheck, goreleaser, svu, DCO and REUSE when required, cross-OS matrix, per-package coverage thresholds, benchmark history as artifact, CI summary.
+- **rust-ci** — `rust-toolchain.toml` pinning, `Swatinem/rust-cache`, rustfmt, clippy with `-D warnings`, `cargo nextest` matrix, doctests, `cargo llvm-cov` coverage, `cargo doc` with broken-link checking, `cargo deny` + `cargo audit`, MSRV verify, `miri` for unsafe-bearing crates, `release-plz` for release PRs, `cargo-dist` for artifact pipelines.
 - **python-ci** — uv (or poetry) with lockfile integrity check, ruff (lint + format), mypy or pyright, pytest matrix across supported Python versions, pip-audit, bandit, uv build + twine check, OIDC trusted publishing to PyPI.
 
 ## Versioning
@@ -296,6 +309,15 @@ Copyright attribution for the repository and included skills is `Skaphos`.
 ```
 skills/
 ├── go/
+│   ├── audit.skill.md
+│   ├── ci.skill.md
+│   ├── dev.skill.md
+│   ├── docs.skill.md
+│   ├── migrate.skill.md
+│   ├── policy.skill.md
+│   ├── test.skill.md
+│   └── workflow.skill.md
+├── rust/
 │   ├── audit.skill.md
 │   ├── ci.skill.md
 │   ├── dev.skill.md
